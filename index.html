@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Grab Audio</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <!-- <script src='audio.js'></script> -->
+  <script src='video.js'></script>
+</head>
+<body>
+  <div class='container'>
+      <video autoplay></video>
+      <p id='prompt1'>Please Capture Video To Get Started</p>
+          <div> 
+            <h3>Set Screenshot</h3>
+              <button class='capture'>Capture video</button>
+              <button id='screenshot' disabled>Screenshot</button>
+              <button class='download' disabled>Download</button>
+              <label for="select"> Format </label>
+              <select id="select" onchange='onFormatChange()'>
+                <option value='.png'>PNG</option>
+                <option value='.jpeg'>JPEG</option>
+                <option value='.jpg'>JPG</option>
+                <option value='.tiff'>TIFF</option>
+              </select>
+              <button id='clear' onclick="clearAll()" disabled>Clear All</button>
+          </div>
+      <div class='imgContainer'>
+          <p id='prompt2'>Click 'Screenshot' to take a picture.</p>
+          <img src=''>
+      </div>
+  </div>
+</body>
+</html>

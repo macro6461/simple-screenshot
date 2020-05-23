@@ -1,0 +1,70 @@
+body, button, select{ 
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container{
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+video, .container > .imgContainer{
+    display: flex;
+    align-items: center;
+    width: 45%;
+    height: 400px;
+    border: solid 1px #6495ED;
+    max-width: 600px;
+    position: relative;
+}
+
+#prompt1, #prompt2{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 100;
+}
+
+#prompt2{
+    display: none;
+}
+
+.container > div > img {
+    width: 100%;
+    display: none;
+}
+
+h3{
+    text-align: center;
+}
+
+button, select, label{
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+    width: 125px;
+    padding: 10px 0 10px 0;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}
+
+#buttonContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    margin: 10px auto;
+}
+
+select, label{
+    visibility: hidden;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
+}
