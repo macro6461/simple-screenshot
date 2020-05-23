@@ -1,4 +1,4 @@
-var parent, img, video, prompt1, prompt2, screenshot, download, select, label, clear;
+var img, video, prompt1, prompt2, screenshot, download, select, label, clear;
 var enable = false;
 const canvas = document.createElement('canvas');
 var format = '.png'
@@ -6,7 +6,6 @@ var format = '.png'
 const init = () => {
     hasGetUserMedia()
     if (enable){
-        parent = document.getElementsByClassName('container')[0]
         prompt1 = document.getElementById('prompt1');
         prompt2 = document.getElementById('prompt2');
         screenshot = document.getElementById('screenshot');
@@ -31,8 +30,8 @@ const hasGetUserMedia = () => {
 }
 
 const onDownload = () => {
-    var download = document.createElement('a');
-    download.href = img.src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream')
+    download = document.createElement('a');
+    download.href = img.src
     download.download = 'yourScreenshot' + format;
     download.style.display = 'none';
     document.body.appendChild(download);
@@ -71,16 +70,17 @@ const onFormatChange = () =>{
 
 const clearAll = () => {
     video.srcObject.getVideoTracks().forEach(track => track.stop())
-    parent.removeChild(video);
+    document.getElementsByClassName('container')[0].removeChild(video);
     video = document.createElement("video")
     video.autoplay = true
-    parent.insertBefore(video, prompt1)
+    document.getElementsByClassName('container')[0].insertBefore(video, prompt1)
     if (img){
         img.style.display = 'none'
     }
     screenshot.disabled = true;
     download.disabled = true;
-    select.style.display = 'none';
+    select.style.visibility = 'hidden';
+    label.style.display = 'none';
     format = null;
     prompt2.style.display = 'none';
     prompt1.style.display = 'block';
@@ -89,6 +89,3 @@ const clearAll = () => {
 }
 
 document.addEventListener('DOMContentLoaded', init)
-
-//https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
-//https://stackoverflow.com/questions/10473932/browser-html-force-download-of-image-from-src-dataimage-jpegbase64
