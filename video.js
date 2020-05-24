@@ -1,4 +1,4 @@
-var img, video, prompt1, prompt2, screenshot, download, select, label, clear;
+var img, backgroundImage, video, prompt1, prompt2, screenshot, download, select, label, clear;
 var enable = false;
 const canvas = document.createElement('canvas');
 var format = '.png'
@@ -29,16 +29,6 @@ const hasGetUserMedia = () => {
     }
 }
 
-const onDownload = () => {
-    download = document.createElement('a');
-    download.href = img.src
-    download.download = 'yourScreenshot' + format;
-    download.style.display = 'none';
-    document.body.appendChild(download);
-    download.click();
-    document.body.removeChild(download);
-};
-
 const onCapture = () => {
     navigator.mediaDevices
                 .getUserMedia({video: true})
@@ -52,9 +42,26 @@ const onCapture = () => {
                 .catch(err=>alert('Error occurred: ' + err));
 }
 
+const uploadBackground = () =>{
+   var c = document.getElementById('canvasTwo');
+   var ctx = c.getContext('2d');
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = () => {
+            c.width = img.width;
+            c.height = img.height;
+            ctx.drawImage(img,0,0);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);   
+};
+
 const onScreenshot = () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
+
     canvas.getContext('2d').drawImage(video, 0, 0);
     prompt2.style.display = 'none'
     img.src = canvas.toDataURL('image/png');
@@ -67,6 +74,16 @@ const onScreenshot = () => {
 const onFormatChange = () =>{
     format = event.target.value
 }
+
+const onDownload = () => {
+    download = document.createElement('a');
+    download.href = img.src
+    download.download = 'yourScreenshot' + format;
+    download.style.display = 'none';
+    document.body.appendChild(download);
+    download.click();
+    document.body.removeChild(download);
+};
 
 const clearAll = () => {
     video.srcObject.getVideoTracks().forEach(track => track.stop())
