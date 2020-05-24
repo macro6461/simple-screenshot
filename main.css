@@ -64,6 +64,7 @@ select, label{
     visibility: hidden;
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
+    border-radius: 0px;
     text-align: center;
     text-align-last: center;
     -moz-text-align-last: center;
